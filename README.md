@@ -1,2 +1,2 @@
 # StreamApp
-App for IRL-Streaming
+Backend for IRL-Streaming-App

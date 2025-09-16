@@ -1,7 +1,7 @@
-import type { RequestType } from "../enums/requestType.ts";
-import type RequestBody from "../models/requests/requestBody.ts";
-import type RequestResponse from "../models/requests/requestResponse.ts";
-import config from "../config.ts";
+import type { RequestType } from "../enums/requestType";
+import type RequestBody from "../models/requests/requestBody";
+import type RequestResponse from "../models/requests/requestResponse";
+import config from "../config";
 
 export default class RequestManager {
     public static async sendRequest(requestType: RequestType, url: string, body?: RequestBody): Promise<RequestResponse> {

@@ -1,5 +1,5 @@
-import type Message from './message.ts';
-import config from "../../config.ts";
+import type Message from './message';
+import config from "../../config";
 
 export default class ChatHistory{
     private messages : Array<Message> = [];

@@ -1,4 +1,4 @@
-import type MessageUser from "./messageUser.ts"
+import type MessageUser from "./messageUser"
 
 export default interface Message {
     timestamp: string | undefined,

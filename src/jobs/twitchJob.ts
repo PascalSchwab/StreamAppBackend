@@ -1,5 +1,5 @@
 import tmi, { type Options } from "tmi.js"
-import config from "../config.ts";
+import config from "../config";
 
 const opts: Options = {
     identity: {

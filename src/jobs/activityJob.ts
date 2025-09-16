@@ -1,14 +1,14 @@
-import config from "../config.ts";
-import { streamElementsSocket } from "./streamElementsJob.ts";
-import RequestManager from "../managers/requestManager.ts";
-import type { Activity } from "../models/actvities/activity.ts";
-import type { FollowActivity } from "../models/actvities/followActivity.ts";
-import type { RaidActivity } from "../models/actvities/raidActivity.ts";
-import type { TipActivity } from "../models/actvities/tipActivity.ts";
-import type { SubscribeActivity } from "../models/actvities/subscribeActivity.ts";
-import type { CheerActivity } from "../models/actvities/cheerActivity.ts";
-import type { ChannelPointsActivity } from "../models/actvities/channelPointsActivity.ts";
-import { socketServer } from "../app.ts";
+import config from "../config";
+import { streamElementsSocket } from "./streamElementsJob";
+import RequestManager from "../managers/requestManager";
+import type { Activity } from "../models/actvities/activity";
+import type { FollowActivity } from "../models/actvities/followActivity";
+import type { RaidActivity } from "../models/actvities/raidActivity";
+import type { TipActivity } from "../models/actvities/tipActivity";
+import type { SubscribeActivity } from "../models/actvities/subscribeActivity";
+import type { CheerActivity } from "../models/actvities/cheerActivity";
+import type { ChannelPointsActivity } from "../models/actvities/channelPointsActivity";
+import { socketServer } from "../app";
 
 export const getActivityHistory = async () => {
     let after = new Date();

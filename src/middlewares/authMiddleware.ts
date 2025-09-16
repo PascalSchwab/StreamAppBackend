@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
-import config from '../config.ts';
+import config from '../config';
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try {

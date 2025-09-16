@@ -1,5 +1,5 @@
 import { io } from "socket.io-client"
-import config from "../config.ts";
+import config from "../config";
 
 export const streamElementsSocket = io("https://realtime.streamelements.com", {
     transports: ["websocket"],

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { restartActivity } from '../controllers/activityController.ts';
-import { authMiddleware } from '../middlewares/authMiddleware.ts';
+import { restartActivity } from '../controllers/activityController';
+import { authMiddleware } from '../middlewares/authMiddleware';
 
 const router = Router();
 

@@ -1,12 +1,12 @@
 import express from 'express';
-import activityRoutes from "./routes/activityRoutes.ts"
+import activityRoutes from "./routes/activityRoutes"
 import http from 'http'
 import {Server} from "socket.io"
-import { chatHistory } from './jobs/chatJob.ts';
-import { getActivityHistory } from './jobs/activityJob.ts';
-import config from './config.ts';
-import "./jobs/activityJob.ts"
-import "./jobs/chatJob.ts"
+import { chatHistory } from './jobs/chatJob';
+import { getActivityHistory } from './jobs/activityJob';
+import config from './config';
+import "./jobs/activityJob"
+import "./jobs/chatJob"
 
 const app = express();
 const server = http.createServer(app);

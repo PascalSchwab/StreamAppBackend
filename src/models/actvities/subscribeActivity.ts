@@ -1,4 +1,4 @@
-import type { Activity } from "./activity.ts";
+import type { Activity } from "./activity";
 
 export interface SubscribeActivity extends Activity{
     amount: number,

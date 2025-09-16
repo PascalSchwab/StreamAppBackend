@@ -1,4 +1,4 @@
-import type SupportInfo from "./supportInfo.ts"
+import type SupportInfo from "./supportInfo"
 
 export default interface MessageUser{
     name: string | undefined,

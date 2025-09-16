@@ -1,9 +1,9 @@
-import ChatHistory from "../models/chat/chatHistory.ts";
-import type Message from "../models/chat/message.ts";
-import type MessageUser from "../models/chat/messageUser.ts";
-import type SupportInfo from "../models/chat/supportInfo.ts";
-import { twitchClient } from "./twitchJob.ts";
-import { socketServer } from "../app.ts";
+import ChatHistory from "../models/chat/chatHistory";
+import type Message from "../models/chat/message";
+import type MessageUser from "../models/chat/messageUser";
+import type SupportInfo from "../models/chat/supportInfo";
+import { twitchClient } from "./twitchJob";
+import { socketServer } from "../app";
 
 export const chatHistory = new ChatHistory();
 

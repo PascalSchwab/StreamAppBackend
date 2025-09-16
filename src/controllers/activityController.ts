@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
-import RequestManager from '../managers/requestManager.ts';
-import config from '../config.ts';
+import RequestManager from '../managers/requestManager';
+import config from '../config';
 
 export const restartActivity = (req: Request, res: Response, next: NextFunction) => {
     try {

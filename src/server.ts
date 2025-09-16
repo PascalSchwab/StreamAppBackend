@@ -1,5 +1,5 @@
-import {server} from "./app.ts";
-import "./config.ts";
+import {server} from "./app";
+import "./config";
 
 const port = 5000;
 

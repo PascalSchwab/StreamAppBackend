@@ -9,14 +9,15 @@ import "./jobs/activityJob"
 import "./jobs/chatJob"
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/activity", activityRoutes);
+
 const server = http.createServer(app);
 const socketServer = new Server(server, {
     cors: { origin: '*' }
 });
-app.use(express.json());
-
-app.use("/api/activity", activityRoutes);
-
 socketServer.on("connection", async (socket)=>{
     if(socket.handshake.query.password && socket.handshake.query.password === config.password){
         console.log('Client connected', socket.id);

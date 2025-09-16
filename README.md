@@ -1,5 +1,5 @@
-# StreamApp
-App for IRL-Streaming
+# StreamAppBackend
+Backend for IRL-Streaming-App
 
 
 ```yaml

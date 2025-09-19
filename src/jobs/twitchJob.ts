@@ -17,3 +17,7 @@ twitchClient.connect().catch(console.error);
 twitchClient.on("connected", (addr, port) => {
     console.log("Connected to Twitch!");
 });
+
+export function sendMessageToTwitch(message: string){
+    twitchClient.say(config.channelName, message);
+}

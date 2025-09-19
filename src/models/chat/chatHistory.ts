@@ -8,6 +8,10 @@ export default class ChatHistory{
         this.messages.push(message);
         if (this.messages.length > config.maxHistory) this.messages.shift();
     }
+
+    getMessages(): Array<Message>{
+        return this.messages;
+    }
 }
 
 /*

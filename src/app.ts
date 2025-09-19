@@ -4,6 +4,7 @@ import http from 'http'
 import {Server} from "socket.io"
 import { chatHistory } from './jobs/chatJob';
 import { getActivityHistory } from './jobs/activityJob';
+import { sendMessageToTwitch } from "./jobs/twitchJob";
 import config from './config';
 import "./jobs/activityJob"
 import "./jobs/chatJob"
@@ -20,9 +21,11 @@ const socketServer = new Server(server, {
 });
 socketServer.on("connection", async (socket)=>{
     if(socket.handshake.query.password && socket.handshake.query.password === config.password){
-        console.log('Client connected', socket.id);
-        socketServer.emit("chat:history", chatHistory);
-        socketServer.emit("activity:history", await getActivityHistory());
+        socket.emit("chat:history", chatHistory.getMessages());
+        socket.emit("activity:history", await getActivityHistory());
+        socket.on("chat:reply", (text) => {
+            sendMessageToTwitch(text);
+        });
     }
     else{
         socket.disconnect();

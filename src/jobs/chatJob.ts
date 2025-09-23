@@ -8,7 +8,6 @@ import { socketServer } from "../app";
 export const chatHistory = new ChatHistory();
 
 twitchClient.on('message', (channel, userstate, text, self) => {
-    if(self) return;
     let supportInfo: SupportInfo = {
         mod: userstate.mod,
         subscriber: userstate.subscriber

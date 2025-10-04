@@ -13,14 +13,3 @@ export default class ChatHistory{
         return this.messages;
     }
 }
-
-/*
-
-twitch.on('message', (channel, userstate, message, self) => {
-    if(self) return;
-    console.log(channel);
-    console.log(userstate);
-    console.log(message);
-});
-
-*/

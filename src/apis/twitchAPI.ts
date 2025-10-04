@@ -30,7 +30,7 @@ export class TwitchAPI{
             this._events.emit("error", err);
         });
         this._registerEvents();
-        // this.changeToFollowerOnly(true);
+        this.changeToFollowerOnly(true);
     }
 
     private _registerEvents(){
@@ -49,15 +49,21 @@ export class TwitchAPI{
     }
 
     public async changeToFollowerOnly(followerOnly: boolean){
-        // await RequestManager.sendRequest("PATCH", "https://api.twitch.tv/helix/chat/settings?broadcaster_id=" + 91427950, 
-        // {
-        //     "Content-Type": "application/json",
-        //     "Authentication": `Bearer ${config.accessToken}`,
-        //     'Accept': 'application/json, charset=utf-8'
-        // }, {
-        //     followers_only_mode: followerOnly,
-        //     followers_only_mode_duration: 0
-        // })
+        await RequestManager.sendRequest("PATCH", "https://api.twitch.tv/helix/chat/settings?broadcaster_id=" + 91427950 + "&moderator_id=" + 91427950, 
+        {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${config.accessToken}`,
+            "Client-ID": config.clientId,
+            'Accept': 'application/json, charset=utf-8'
+        }, {
+            followers_only_mode: followerOnly,
+            followers_only_mode_duration: 0
+        }).then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.error(err);
+        });
     }
 
     public on<K extends keyof TwitchEvents>(

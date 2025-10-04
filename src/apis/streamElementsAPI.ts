@@ -58,7 +58,7 @@ export class StreamElementsAPI{
         return await RequestManager.sendRequest("GET", `https://api.streamelements.com/kappa/v2/activities/${config.streamElementsId}?after=${this._toUrlEncodedIso(after)}&before=${this._toUrlEncodedIso(before)}&limit=50&mincheer=0&minhost=0&minsub=0&mintip=0&origin=*&types=follow&types=raid&types=tip&types=subscriber&types=cheer&types=channelPointsRedemption`,
         {
             "Content-Type": "application/json",
-            "Authentication": `Bearer ${config.streamElementsToken}`,
+            "Authorization": `Bearer ${config.streamElementsToken}`,
             'Accept': 'application/json, charset=utf-8'
         }).then((response)=>{
             return response.data;

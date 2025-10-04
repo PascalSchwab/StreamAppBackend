@@ -9,7 +9,7 @@ export const restartActivity = (req: Request, res: Response, next: NextFunction)
         return RequestManager.sendRequest("POST", `https://api.streamelements.com/kappa/v2/activities/${config.streamElementsId}/${id}/replay`,
         {
             "Content-Type": "application/json",
-            "Authentication": `Bearer ${config.streamElementsToken}`,
+            "Authorization": `Bearer ${config.streamElementsToken}`,
             'Accept': 'application/json, charset=utf-8'
         }
         ).then((response)=>{

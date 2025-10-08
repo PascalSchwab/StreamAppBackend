@@ -1,3 +1,4 @@
+import { injectable } from "tsyringe";
 import { EventBus } from "../utils/eventBus";
 import OBSWebSocket from "obs-websocket-js"
 
@@ -9,12 +10,16 @@ export type ObsEvents = {
     error: Error;
 };
 
+@injectable()
 export class ObsAPI{
     private _client;
     private _events = new EventBus<ObsEvents>();
 
     constructor(){
         this._client = new OBSWebSocket();
+    }
+
+    public init(){
         this._client.connect("ws://retrosize.de:4455", "irl_stream_123")
         .then(async()=>{
             console.log("✅ Connected to OBS!");

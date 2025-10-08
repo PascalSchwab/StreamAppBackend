@@ -1,7 +1,11 @@
 import { Server, Socket } from "socket.io";
 import config from '../config';
-import { chatHistory, streamElementsService, twitchService } from "../app";
+import { chatHistory } from "../app";
+import { container, injectable } from "tsyringe";
+import { StreamElementsService } from "./streamElementsService";
+import { TwitchService } from "./twitchService";
 
+@injectable()
 export class SocketHandleService{
     public init(io: Server){
         io.on("connection", (socket: Socket) => {
@@ -16,10 +20,10 @@ export class SocketHandleService{
         }
 
         socket.emit("chat:history", chatHistory.getMessages());
-        socket.emit("activity:history", await streamElementsService.getActivityHistory());
+        socket.emit("activity:history", await container.resolve(StreamElementsService).getActivityHistory());
 
         socket.on("chat:reply", (text: string) => {
-            twitchService.sendMessage(text);
+            container.resolve(TwitchService).sendMessage(text);
         });
 
         socket.on("map:show", (coord) => {

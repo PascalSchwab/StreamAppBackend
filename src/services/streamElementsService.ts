@@ -1,4 +1,4 @@
-import { streamElementsAPI } from "../apis/streamElementsAPI";
+import { inject, injectable } from "tsyringe";
 import { socketServer } from "../app";
 import { Activity } from "../models/actvities/activity";
 import { ChannelPointsActivity } from "../models/actvities/channelPointsActivity";
@@ -7,14 +7,20 @@ import { FollowActivity } from "../models/actvities/followActivity";
 import { RaidActivity } from "../models/actvities/raidActivity";
 import { SubscribeActivity } from "../models/actvities/subscribeActivity";
 import { TipActivity } from "../models/actvities/tipActivity";
+import { StreamElementsAPI } from "../apis/streamElementsAPI";
 
+@injectable()
 export class StreamElementsService{
-    constructor(){
+    constructor(@inject(StreamElementsAPI) private readonly _streamElementsAPI: StreamElementsAPI){
+    }
+
+    public init(){
+        this._streamElementsAPI.init();
         this._registerEvents();
     }
 
     public async getActivityHistory() {
-        const data = await streamElementsAPI.getActivityHistory();
+        const data = await this._streamElementsAPI.getActivityHistory();
         const activities : Array<Activity> = [];
         for(const activity of data){
             activities.push(this._createActivity(activity));
@@ -23,7 +29,7 @@ export class StreamElementsService{
     }
 
     private _registerEvents(){
-        streamElementsAPI.on("event", (event) => {
+        this._streamElementsAPI.on("event", (event) => {
             socketServer.emit("activity:event", this._createActivity(event));
         });
     }

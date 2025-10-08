@@ -2,8 +2,7 @@ import { io } from "socket.io-client"
 import config from "../config";
 import { EventBus } from "../utils/eventBus";
 import { RequestManager } from "../utils/requestManager";
-
-const URL = "https://realtime.streamelements.com";
+import { injectable } from "tsyringe";
 
 export type StreamElementsEvents = {
   connected: void;
@@ -12,15 +11,18 @@ export type StreamElementsEvents = {
   error: Error;
 };
 
+@injectable()
 export class StreamElementsAPI{
     private _client;
     private _events = new EventBus<StreamElementsEvents>();
 
     constructor(){
-        this._client = io(URL, {
+        this._client = io("https://realtime.streamelements.com", {
             transports: ["websocket"]
         });
+    }
 
+    public init(){
         this._registerEvents();
     }
 

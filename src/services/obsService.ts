@@ -1,10 +1,13 @@
+import { inject, injectable } from "tsyringe";
 import { ObsAPI } from "../apis/obsAPI";
 
+@injectable()
 export class ObsService{
-    private _obsAPI : ObsAPI;
+    constructor(@inject(ObsAPI) private readonly _obsAPI: ObsAPI){
+    }
 
-    constructor(){
-        this._obsAPI = new ObsAPI();
+    public init(){
+        this._obsAPI.init();
     }
 
     public async getStreamStatus(){

@@ -1,10 +1,9 @@
+import { inject, injectable } from "tsyringe";
 import { EmotesAPI } from "../apis/emotesAPI";
 
-export class EmotesService{
-    private _emotesAPI : EmotesAPI;
-        
-    constructor(){
-        this._emotesAPI = new EmotesAPI();
+@injectable()
+export class EmotesService{        
+    constructor(@inject(EmotesAPI) private readonly _emotesAPI: EmotesAPI){
         this.getEmotes();
     }
 

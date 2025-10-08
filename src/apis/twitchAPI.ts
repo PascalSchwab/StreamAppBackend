@@ -2,6 +2,7 @@ import tmi, { type Options } from "tmi.js"
 import config from "../config";
 import { EventBus } from "../utils/eventBus";
 import { RequestManager } from "../utils/requestManager";
+import { injectable } from "tsyringe";
 
 const opts: Options = {
     identity: {
@@ -19,18 +20,21 @@ export type TwitchEvents = {
   error: Error;
 };
 
+@injectable()
 export class TwitchAPI{
     private _client;
     private _events = new EventBus<TwitchEvents>();
     
     constructor(){
         this._client = tmi.Client(opts);
+    }
+
+    public init(){
         this._client.connect().catch((err) => {
             console.error(`[${this.constructor.name}] Connection error:`, err);
             this._events.emit("error", err);
         });
         this._registerEvents();
-        this.changeToFollowerOnly(true);
     }
 
     private _registerEvents(){

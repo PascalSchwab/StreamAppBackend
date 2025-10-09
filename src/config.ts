@@ -12,6 +12,7 @@ interface Config {
   maxHistory: number;
   streamElementsToken: string;
   streamElementsId: string;
+  youtubeChannelId: string;
 }
 
 const config: Config = {
@@ -23,7 +24,8 @@ const config: Config = {
   twitchBroadcasterId: process.env.TWITCH_BROADCASTER_ID || "1234",
   maxHistory: Number(process.env.MAX_HISTORY) || 500,
   streamElementsToken: process.env.STREAM_ELEMENTS_TOKEN || "1234",
-  streamElementsId: process.env.STREAM_ELEMENTS_ID || "1234"
+  streamElementsId: process.env.STREAM_ELEMENTS_ID || "1234",
+  youtubeChannelId: process.env.YOUTUBE_CHANNEL_ID || "1234"
 };
 
 export default config;

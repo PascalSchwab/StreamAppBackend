@@ -53,6 +53,8 @@ export class TwitchService{
                 text: text,
                 timestamp: userstate["tmi-sent-ts"],
                 channel: channel,
+                platform: "Twitch",
+                superChat: undefined,
                 user: messageUser
             };
             chatHistory.pushHistory(message);

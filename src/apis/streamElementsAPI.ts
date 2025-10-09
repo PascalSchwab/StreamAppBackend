@@ -86,5 +86,3 @@ export class StreamElementsAPI{
         return encodeURIComponent(iso);
     }
 }
-
-export const streamElementsAPI = new StreamElementsAPI();

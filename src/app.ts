@@ -10,6 +10,7 @@ import { SocketHandleService } from './services/socketHandlerService';
 import { ObsService } from './services/obsService';
 import { TwitchService } from './services/twitchService';
 import { StreamElementsService } from './services/streamElementsService';
+import { YoutubeService } from './services/youtubeService';
 
 const app = express();
 app.use(express.json());
@@ -24,9 +25,10 @@ const socketServer = new Server(server, {
     cors: { origin: '*' }
 });
 
-container.resolve(StreamElementsService).init();
-container.resolve(ObsService).init()
-container.resolve(TwitchService).init();
-container.resolve(SocketHandleService).init(socketServer);
+// container.resolve(StreamElementsService).init();
+// container.resolve(ObsService).init()
+// container.resolve(TwitchService).init();
+container.resolve(YoutubeService).init();
+// container.resolve(SocketHandleService).init(socketServer);
 
 export { server, chatHistory, socketServer };

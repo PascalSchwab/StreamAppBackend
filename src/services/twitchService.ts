@@ -14,11 +14,26 @@ export class TwitchService{
     public init(){
         this._twitchAPI.init();
         this._registerEvents();
-        this._twitchAPI.changeToFollowerOnly(true)
     }
 
     public sendMessage(message: string){
         this._twitchAPI.sendMessage(message);
+    }
+
+    public async changeFollowerMode(followerOnly: boolean){
+        return await this._twitchAPI.changeChatSettings(undefined, followerOnly, undefined, undefined);
+    }
+
+    public async changeEmoteMode(emoteOnly: boolean){
+        return await this._twitchAPI.changeChatSettings(undefined, undefined, undefined, emoteOnly);
+    }
+
+    public async changeSlowMode(slowMode: boolean){
+        return await this._twitchAPI.changeChatSettings(slowMode, undefined, undefined, undefined);
+    }
+
+    public async changeSubMode(subOnly: boolean){
+        return await this._twitchAPI.changeChatSettings(undefined, undefined, subOnly, undefined);
     }
 
     private _registerEvents(){

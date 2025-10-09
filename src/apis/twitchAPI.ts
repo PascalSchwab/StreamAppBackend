@@ -6,10 +6,10 @@ import { injectable } from "tsyringe";
 
 const opts: Options = {
     identity: {
-        username: config.channelName,
-        password: "oauth:" + config.accessToken
+        username: config.twitchChannelName,
+        password: "oauth:" + config.twitchAccessToken
     },
-    channels: [config.channelName],
+    channels: [config.twitchChannelName],
     connection: { reconnect: true, secure: true },
     options: { debug: false }
 };
@@ -49,25 +49,30 @@ export class TwitchAPI{
     }
 
     public sendMessage(message: string){
-        this._client.say(config.channelName, message);
+        this._client.say(config.twitchChannelName, message);
     }
 
-    public async changeToFollowerOnly(followerOnly: boolean){
-        await RequestManager.sendRequest("PATCH", "https://api.twitch.tv/helix/chat/settings?broadcaster_id=" + 91427950 + "&moderator_id=" + 91427950, 
+    public async changeChatSettings(slowMode?: boolean, followerOnly?: boolean, subOnly?: boolean, emoteOnly?: boolean){
+        const body: Record<string, boolean> = {};
+        if(slowMode) body.slow_Mode = slowMode;
+        if(followerOnly) body.follower_mode = followerOnly;
+        if(subOnly) body.subscriber_mode = subOnly;
+        if(emoteOnly) body.emote_mode = emoteOnly;
+        return await RequestManager.sendRequest("PATCH", `https://api.twitch.tv/helix/chat/settings?broadcaster_id=${config.twitchBroadcasterId}&moderator_id=${config.twitchBroadcasterId}`,
         {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${config.accessToken}`,
-            "Client-ID": config.clientId,
+            "Authorization": `Bearer ${config.twitchAccessToken}`,
+            "Client-ID": config.twitchClientId,
             'Accept': 'application/json, charset=utf-8'
-        }, {
-            followers_only_mode: followerOnly,
-            followers_only_mode_duration: 0
-        }).then((res)=>{
-            console.log(res);
+        }, body).then((res)=>{
+            const data = res.data.data;
+            return {
+                "slow_mode": data.slow_mode,
+                "follower_mode": data.follower_mode,
+                "subscriber_mode": data.subscriber_mode,
+                "emote_mode": data.emote_mode
+            }
         })
-        .catch((err)=>{
-            console.error(err);
-        });
     }
 
     public on<K extends keyof TwitchEvents>(

@@ -1,6 +1,5 @@
 import type RequestBody from "../models/requests/requestBody";
 import type RequestResponse from "../models/requests/requestResponse";
-import config from "../config";
 
 const RequestType = {
   GET: "GET",

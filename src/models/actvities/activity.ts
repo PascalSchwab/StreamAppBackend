@@ -1,4 +1,5 @@
 export interface Activity{
     id: string,
-    type: string
+    type: string,
+    channel: string
 }

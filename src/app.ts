@@ -1,6 +1,7 @@
 import express from 'express';
 import "reflect-metadata"
 import activityRoutes from "./routes/activityRoutes"
+import twitchRoutes from "./routes/twitchRoutes"
 import http from 'http'
 import { Server } from "socket.io"
 import "./services/streamElementsService"
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/activity", activityRoutes);
+app.use("api/twitch", twitchRoutes);
 
 const chatHistory = new ChatHistory();
 
@@ -25,10 +27,10 @@ const socketServer = new Server(server, {
     cors: { origin: '*' }
 });
 
-// container.resolve(StreamElementsService).init();
-// container.resolve(ObsService).init()
-// container.resolve(TwitchService).init();
+container.resolve(StreamElementsService).init();
+container.resolve(ObsService).init();
+container.resolve(TwitchService).init();
 container.resolve(YoutubeService).init();
-// container.resolve(SocketHandleService).init(socketServer);
+container.resolve(SocketHandleService).init(socketServer);
 
 export { server, chatHistory, socketServer };

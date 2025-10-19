@@ -38,6 +38,7 @@ export class StreamElementsService{
         switch(activity.type){
             case "follow":
                 let follow: FollowActivity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "follow",
                     name: activity.data.displayName
@@ -45,6 +46,7 @@ export class StreamElementsService{
                 return follow;
             case "raid":
                 let raid: RaidActivity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "raid",
                     name: activity.data.displayName,
@@ -54,6 +56,7 @@ export class StreamElementsService{
                 return raid;
             case "tip":
                 let tip: TipActivity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "tip",
                     name: activity.data.displayName,
@@ -63,6 +66,7 @@ export class StreamElementsService{
                 return tip;
             case "subscriber":
                 let subscriber: SubscribeActivity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "subscriber",
                     name: activity.data.displayName,
@@ -74,6 +78,7 @@ export class StreamElementsService{
                 return subscriber;
             case "cheer":
                 let cheer: CheerActivity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "cheer",
                     name: activity.data.displayName,
@@ -83,6 +88,7 @@ export class StreamElementsService{
                 return cheer;
             case "channelPointsRedemption":
                 let channelPoints: ChannelPointsActivity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "channelPoints",
                     name: activity.data.displayName,
@@ -91,6 +97,7 @@ export class StreamElementsService{
                 return channelPoints;
             default:
                 let unknown: Activity = {
+                    channel: activity.channel,
                     id: activity._id,
                     type: "unknown"
                 }
